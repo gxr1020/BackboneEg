@@ -17,12 +17,6 @@
     </div>
     <div class="m-mn">
         <ul class="m-list">
-            <!--<li>-->
-            <!--123-->
-            <!--</li>-->
-            <!--<li class="select">-->
-            <!--456-->
-            <!--</li>-->
         </ul>
         <div class="m-operBar">
             <button class="newItem">新 建</button>
@@ -48,20 +42,25 @@
             <p>性别:<%=sex%></p>
             <p>邮箱:<%=email%></p>
         </div>
+
+
 </script>
+
 <script type="text/tempalte" id="tpl-edit">
-<div class="m-operBar">
+        <div class="m-operBar">
             <a  class="saveItem">保存</a>
             <a  class="deleItem">删除</a>
         </div>
         <div class="content">
-            <p>姓名:<input type="text" id="name" value="<%=name%>"/></p>
-            <p>性别:<select name="sex" id="sex" value="<%=sex%>">
-					<option value="男">男</option>
-					<option value="女">女</option>
+            <p>姓名: <input type="text" id="name" value="<%=name%>"/></p>
+            <p>性别: <select name="sex" id="sex" >
+					<option value="男" <%=(sex=="男"?"selected":"")%> >男</option>
+					<option value="女" <%=(sex=="女"?"selected":"")%> >女</option>
 				</select></p>
-            <p>邮箱:<input type="text" id="email" value="<%=email%>"/></p>
+            <p>邮箱: <input type="text" id="email" value="<%=email%>"/></p>
         </div>
+
+
 </script>
 
 
@@ -72,7 +71,14 @@
 <script src="js/models/person.js"></script>
 <script src="js/collections/persons.js"></script>
 <script src="js/views/personItemView.js"></script>
-<script src="js/views/dataListView.js"></script>
+<script src="js/views/personListView.js"></script>
+<script src="js/views/searchView.js"></script>
+<script src="js/views/showView.js"></script>
+<script src="js/views/editView.js"></script>
+<script src="js/views/groupView2.js"></script>
+
+<script src="js/views/appView.js"></script>
+
 <script src="js/routers/router.js"></script>
 </body>
 </html>

@@ -1,22 +1,36 @@
 var app=app||{};
-(function($){
+(function(){
     'use strict';
-    var personDetailsView=Backbone.View.extend({
-        tagName:'.g-warp',
-
+    var appView=Backbone.View.extend({
+        el:$('.g-warp'),
         initialize:function(){
-            this.dataListView=new app.dataListView({
-                model:this.model
-            });
-            this.footerView=new app.footerView();
 
-            this.render();
+            this.personList=new app.personListView;
+            this.searchView=new app.searchView;
+            this.groupView2=new app.groupView2;
+
+            this.listenTo(this.searchView,'abc',this.search)
         },
-        render:function(){
-            this.$el.append()
+
+        //render:function(){
+        //    //$('.m-ft').append(this.groupView2.render().el);
+        //},
+        show:function(Itemid){
+            this.groupView2.show(Itemid);
+            this.personList.selectItem(Itemid);
+        },
+        edit:function(Itemid){
+            this.groupView2.edit(Itemid);
+            this.personList.selectItem(Itemid);
+        },
+        search:function(){
+            this.groupView2.showView.$el.addClass('f-dn')
+            this.groupView2.editView.$el.addClass('f-dn')
+
         }
-    })
 
-    personItemView
-})(jQuery)
+    });
 
+    app.appView=new appView();
+
+})();

@@ -1,18 +1,30 @@
-var app=app||{};
-(function($){
+var app = app || {};
+(function ($) {
     'use strict';
-    var AppRouter=Backbone.Router.extend({
-        routes:{
+    var router = Backbone.Router.extend({
+        routes: {
             '':'show',
             'person/:id':'show',
             'person/:id/edit':'edit'
         },
         show:function(id){
-            console.log('刷新了',id);
 
+            if(id!=undefined){
+                app.appView.show(id);
+            }else if(app.personCollection.first()!=undefined) {
+                console.log();
+                app.appView.show(app.personCollection.first().cid)
+            }else{
+
+                app.appView.show('')
+
+            }
+        },
+        edit:function(id){
+             app.appView.edit(id);
         }
     });
-    app.router=new AppRouter();
 
-    Backbone.history.start();
-})(jQuery);
+    app.router = new router();
+    Backbone.history.start();//启动
+})(jQuery)

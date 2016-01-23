@@ -3,29 +3,32 @@ var app=app||{};
     'use strict';
     var personItemView=Backbone.View.extend({
         tagName:'li',
-        template: _.template($('#tpl-item').html()),
         events:{
             'click':'select'
         },
-        initialize:function(){
-            console.log(this);
-            //_.bindAll(this,'select');
-            //老写法
-            //this.model.bind('reset',this.render,this);
-            this.listenTo(this.model,'reset',this.render);
-            this.listenTo(this.model,'change',this.render);
-            this.listenTo(this.model,'destroy',this.remove);
+        tempalte: _.template($('#tpl-item').html()),
+        initialize:function (){
+            this.model.view=this;
         },
         render:function(){
-            this.$el.html(this.template(this.model.toJSON()));
+            this.$el.html(this.tempalte(this.model.toJSON()));
             return this;
+        },
+        toggleItem:function(pd){
+            this.$el.toggle(pd);
         },
         select:function(){
             app.router.navigate('person/'+this.model.cid,{
-                tirigger:true ///执行相应方法
+                trigger:true
             })
+        },
+        sele:function(){
+            this.$el.addClass('selectLi');
+        },
+        dsele:function(){
+            this.$el.removeClass('selectLi');
         }
-    });
-    app.personItemView=personItemView;
 
+    })
+    app.personItemView=personItemView;
 })(jQuery);

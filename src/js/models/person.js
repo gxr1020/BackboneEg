@@ -1,5 +1,4 @@
 var app = app || {};
-
 (function () {
     'use strict';
     var person = Backbone.Model.extend({
@@ -9,15 +8,12 @@ var app = app || {};
             email: ""
         },
         search: function (key) {
-            if (typeof(key) == 'undefined' || key == null || key == '') return true;
-            key = key.toLowerCase();
-            var name = this.get('name').toLowerCase(),
-                sex = this.get('sex').toLowerCase(),
-                email = this.get('email').toLowerCase();
-            return name.indexOf(key) != -1 ||
-                sex.indexOf(key) != -1 ||
-                email.indexOf(key) != -1;
+            console.log(this.get(name));
+            var nameIndex = this.get('name').indexOf(key),
+                sexIndex = this.get('sex').indexOf(key),
+                emailIndex = this.get('email').indexOf(key);
+            return nameIndex!=-1||sexIndex!=-1||emailIndex!=-1;
         }
     });
-    app.person=person;
-})();
+    app.personModel=person;
+})()
